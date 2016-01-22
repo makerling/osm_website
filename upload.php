@@ -143,28 +143,6 @@ echo "
 
  <script language=JavaScript>
 
-  function delete_title()
-  {
-   if(document.getElementById('bibleTitle').value) 
-   {
-    var answer = confirm ('".translate('You are about to permanently delete this Title and all the books assigned to it', $st, 'sys').".\\n".translate('Are you sure?', $st, 'sys')."');
-    if (!answer) {return false;}
-    document.getElementById('devent').value='delete_title';
-    document.form1.submit();
-   }
-  }
-
-  function delete_book()
-  {
-   if(document.getElementById('bookName').value) 
-   {
-    var answer = confirm ('".translate('You are about to permanently delete this book', $st, 'sys').".\\n".translate('Are you sure?', $st, 'sys')."');
-    if (!answer) {return false;}
-    document.getElementById('devent').value='delete_book';
-    document.form1.submit();
-   }
-  }
-
   function upload_files()
   {
    errmsg = ''; 
@@ -191,8 +169,6 @@ echo "
    <option value=\"\"> -- ".translate('Select a current title', $st, 'sys')." -- 
    ".$bibleTitle_options."
   </select> 
-  <img src=\"images/delete.png\" onclick=\"delete_title();\" title=\"delete Bible or Testament\">
-
  <p />
   ".translate('Book name', $st, 'sys').$bookIdDisplay." <br />
   <input name=\"bookName\" id=\"bookName\" value=\"".$_POST['bookName']."\" size=40>
@@ -200,7 +176,6 @@ echo "
    <option value=\"\"> -- ".translate('Select a current name', $st, 'sys')." -- 
    ".$bookName_options."
   </select> 
-  <img src=\"images/delete.png\" onclick=\"delete_book();\" title=\"delete book\">
 
   <br />
   ".translate('Book display order', $st, 'sys')." <br />
