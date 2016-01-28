@@ -159,20 +159,26 @@ echo "
    document.getElementById('devent').value='upload_files';
    document.form1.submit();
   } 
+  
+  function clear_upload() 
+  {
+      document.getElementById(\"docImages\").value = '';
+      document.getElementById(\"oxesFile\").value = '';
+  }
 
  </script>
 
  <p />
   ".translate('Bible or Testament name', $st, 'sys')." <br>
   <input name=\"bibleTitle\" id=\"bibleTitle\" value=\"".$_POST['bibleTitle']."\" size=40>
-  <select onchange=\"document.getElementById('bibleTitle').value=this.value; submit();\">
+  <select onchange=\"document.getElementById('bibleTitle').value=this.value; clear_upload(); submit();\">
    <option value=\"\"> -- ".translate('Select a current title', $st, 'sys')." -- 
    ".$bibleTitle_options."
   </select> 
  <p />
   ".translate('Book name', $st, 'sys').$bookIdDisplay." <br />
   <input name=\"bookName\" id=\"bookName\" value=\"".$_POST['bookName']."\" size=40>
-  <select onchange=\"document.getElementById('bookName').value=this.value; submit();\">
+  <select onchange=\"document.getElementById('bookName').value=this.value; clear_upload(); submit();\">
    <option value=\"\"> -- ".translate('Select a current name', $st, 'sys')." -- 
    ".$bookName_options."
   </select> 
