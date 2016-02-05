@@ -188,12 +188,12 @@ echo "
 
  <p />
   ".translate('Document image file(s) to upload', $st, 'sys')." <br />
-  <input type=\"file\" name=\"docImages\" id=\"docImages\" size=60> &nbsp;
+  <input type=\"file\" name=\"docImages\" id=\"docImages\" size=60 style=\"width:400px\">&nbsp;
   <span style=\"color:silver\">".translate('Only files ending in .jpg or .zip are allowed', $st, 'sys')."</span>
  
  <p />
   ".translate('OXES file to upload', $st, 'sys')." <br />
-  <input type=\"file\" name=\"oxesFile\" id=\"oxesFile\" size=60> &nbsp; 
+  <input type=\"file\" name=\"oxesFile\" id=\"oxesFile\" size=60 style=\"width:400px\">&nbsp; 
   <span style=\"color:silver\">".translate('Only files ending in .oxes or .zip are allowed', $st, 'sys')."</span>
 
  <p />
