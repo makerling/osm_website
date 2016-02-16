@@ -160,10 +160,9 @@ echo "
    document.form1.submit();
   } 
   
-  function clear_upload() 
+  function clear_book() 
   {
-      document.getElementById(\"docImages\").value = '';
-      document.getElementById(\"oxesFile\").value = '';
+      document.getElementById(\"bookName\").value = '';
   }
 
  </script>
@@ -171,14 +170,14 @@ echo "
  <p />
   ".translate('Bible or Testament name', $st, 'sys')." <br>
   <input name=\"bibleTitle\" id=\"bibleTitle\" value=\"".$_POST['bibleTitle']."\" size=40>
-  <select onchange=\"document.getElementById('bibleTitle').value=this.value; clear_upload(); submit();\">
+  <select onchange=\"document.getElementById('bibleTitle').value=this.value; clear_book(); submit();\">
    <option value=\"\"> -- ".translate('Select a current title', $st, 'sys')." -- 
    ".$bibleTitle_options."
   </select> 
  <p />
   ".translate('Book name', $st, 'sys').$bookIdDisplay." <br />
   <input name=\"bookName\" id=\"bookName\" value=\"".$_POST['bookName']."\" size=40>
-  <select onchange=\"document.getElementById('bookName').value=this.value; clear_upload(); submit();\">
+  <select onchange=\"document.getElementById('bookName').value=this.value; submit();\">
    <option value=\"\"> -- ".translate('Select a current name', $st, 'sys')." -- 
    ".$bookName_options."
   </select> 
@@ -189,12 +188,12 @@ echo "
 
  <p />
   ".translate('Document image file(s) to upload', $st, 'sys')." <br />
-  <input type=\"file\" name=\"docImages\" id=\"docImages\" size=60> &nbsp;
+  <input type=\"file\" name=\"docImages\" id=\"docImages\" size=60 style=\"width:400px\">&nbsp;
   <span style=\"color:silver\">".translate('Only files ending in .jpg or .zip are allowed', $st, 'sys')."</span>
  
  <p />
   ".translate('OXES file to upload', $st, 'sys')." <br />
-  <input type=\"file\" name=\"oxesFile\" id=\"oxesFile\" size=60> &nbsp; 
+  <input type=\"file\" name=\"oxesFile\" id=\"oxesFile\" size=60 style=\"width:400px\">&nbsp; 
   <span style=\"color:silver\">".translate('Only files ending in .oxes or .zip are allowed', $st, 'sys')."</span>
 
  <p />
