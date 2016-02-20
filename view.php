@@ -196,7 +196,7 @@ while($myrow=mysql_fetch_array($result))
 		if ($quote != "")
 		{
 			$reg_from = '/'.preg_quote($quote, '/').'/';
-			$dnotation = preg_replace($reg_from, "\r\n<div id=\"quote".$myrow['key']."_".$ii."\" class=\"quote\" onclick=setTimeout(\"setAnnotations('".$myrow['key']."_".$ii."')\",250)><a href=\"#\">".$quote."</a></div>", $dnotation, 1);
+			$dnotation = preg_replace($reg_from, "<div id=\"quote".$myrow['key']."_".$ii."\" class=\"quote\" onclick=setTimeout(\"setAnnotations('".$myrow['key']."_".$ii."')\",250)><a href=\"#\">".$quote."</a></div>", $dnotation, 1);
 			$quotes[$quote] = $myrow['key']."_".$ii;  
 
 			$js_annotations .= "\"".$myrow['key']."_".$ii."\":\"".
