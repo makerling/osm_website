@@ -187,6 +187,7 @@ while($myrow=mysql_fetch_array($result))
  // quotes
  if (isset($quotes[0]))
  {
+        $limit = 1;
 	$ii = 0;
 	foreach($quotes as $quote) 
 	{
@@ -194,7 +195,8 @@ while($myrow=mysql_fetch_array($result))
 		$quote = Normalizer::normalize($quote, Normalizer::FORM_KC);
 		if ($quote != "")
 		{
-			$dnotation = str_replace($quote, "\r\n<div id=\"quote".$myrow['key']."_".$ii."\" class=\"quote\" onclick=setTimeout(\"setAnnotations('".$myrow['key']."_".$ii."')\",250)><a href=\"#\">".$quote."</a></div>", $dnotation);
+			$reg_from = '/'.preg_quote($quote, '/').'/';
+			$dnotation = preg_replace($reg_from, "\r\n<div id=\"quote".$myrow['key']."_".$ii."\" class=\"quote\" onclick=setTimeout(\"setAnnotations('".$myrow['key']."_".$ii."')\",250)><a href=\"#\">".$quote."</a></div>", $dnotation, 1);
 			$quotes[$quote] = $myrow['key']."_".$ii;  
 
 			$js_annotations .= "\"".$myrow['key']."_".$ii."\":\"".
