@@ -128,7 +128,7 @@ while($myrow=mysql_fetch_array($result))
  }
 
  $annotations .= "
-  <div $style name=\"p".$myrow['key']."\" id=\"p".$myrow['key']."\" title='".str_replace("'", "\\'", strip_tags($dnotation))."' onclick=\"focusAnnotation(this)\"\">
+  <div $style name=\"p" . $myrow['key'] . "\" id=\"p" . $myrow['key'] . "\" title=\"" . strip_tags($dnotation) . "\"' onclick=\"focusAnnotation(this)\"\">
    <div style=\"float:right\">
     <img src='images/edit.png'
      onclick=\"editVerse('".$myrow['id']."','".$myrow['key']."');\"
