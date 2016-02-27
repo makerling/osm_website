@@ -316,7 +316,7 @@ echo "
    }
   }
 
-
+// Add a green square on the scripture image
   function addElement(t,l)
   {
    var ni = document.getElementById('doc');
@@ -327,8 +327,8 @@ echo "
    newdiv.style.position = 'absolute';
    newdiv.style.top = t+'px';
    newdiv.style.left = l+'px';
-   newdiv.style.width = '30px';
-   newdiv.style.height = '30px';
+   newdiv.style.width = '20px'; // '30px';
+   newdiv.style.height = '20px'; // '30px';
    newdiv.style.border = '.1em dotted red';
    newdiv.style.zIndex = '2';
    newdiv.style.background = '#009900';
