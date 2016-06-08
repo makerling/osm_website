@@ -11,6 +11,8 @@
 require 'config.php';
 require "authorization.php";
 
+$marker_size = 20;
+
 if ( (!$menu_tab_access['sync.php'] and !$menu_tab_access['everything']) or $sec_password!=$myrow_us['us_pass'])
 {
  echo '<span class="errmsg"> Access denied or timed out. Please Login. Thank you. </span>';
@@ -128,7 +130,7 @@ while($myrow=mysql_fetch_array($result))
  }
 
  $annotations .= "
-  <div $style name=\"p".$myrow['key']."\" id=\"p".$myrow['key']."\" title='".str_replace("'", "\\'", strip_tags($dnotation))."' onclick=\"focusAnnotation(this)\"\">
+  <div $style name=\"p" . $myrow['key'] . "\" id=\"p" . $myrow['key'] . "\" title=\"" . strip_tags($dnotation) . "\"' onclick=\"focusAnnotation(this)\"\">
    <div style=\"float:right\">
     <img src='images/edit.png'
      onclick=\"editVerse('".$myrow['id']."','".$myrow['key']."');\"
@@ -216,8 +218,8 @@ echo "
     var file = c[0];
     var t    = c[1];
     var l    = c[2];
-    var h    = c[3];
-    var w    = c[4];
+    var h    = '" . $marker_size . "px'; // originally c[3];
+    var w    = '" . $marker_size . "px'; // originally c[4];
 
     if(file==imageFile)
     {
@@ -316,7 +318,7 @@ echo "
    }
   }
 
-
+// Add a green square on the scripture image
   function addElement(t,l)
   {
    var ni = document.getElementById('doc');
@@ -327,8 +329,8 @@ echo "
    newdiv.style.position = 'absolute';
    newdiv.style.top = t+'px';
    newdiv.style.left = l+'px';
-   newdiv.style.width = '30px';
-   newdiv.style.height = '30px';
+   newdiv.style.width = '" . $marker_size . "px'; // originally '30px';
+   newdiv.style.height = '" . $marker_size . "px'; // originally '30px';
    newdiv.style.border = '.1em dotted red';
    newdiv.style.zIndex = '2';
    newdiv.style.background = '#009900';
