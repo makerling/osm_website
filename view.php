@@ -171,7 +171,7 @@ while($myrow=mysql_fetch_array($result))
 		$chapter_options .= "<option value=\"chapter_".$chapter."\">".$chapter;
 	   }
 	   if($verse   != $sav_verse)  
-	   {$dnotation .= "\r\n<div id=\"verse_p".$myrow['key']."\" class=\"verse\">".$verse."</div>\r\n";}
+	   {$dnotation .= "\r\n<nobr><div id=\"verse_p".$myrow['key']."\" class=\"verse\">".$verse."</div>\r\n</nobr>";}
 	   $sav_chapter = $chapter;   
 	   $sav_verse   = $verse;
 	  }
