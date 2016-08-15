@@ -209,7 +209,8 @@ while($myrow=mysql_fetch_array($result))
 	}
  }
 
- $specialChrs = ["î","ʿ"];
+ $specialChrs = array("î","ʿ");
+
  # add a narrow space between an f and an i that has a circumflex accent
  foreach ($specialChrs as $nextChr) {
    $dnotation = str_replace('f' . $nextChr, 
