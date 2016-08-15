@@ -217,10 +217,6 @@ while($myrow=mysql_fetch_array($result))
                             $dnotation);
  }
 
- # add a narrow space between an f and an i that has a circumflex accent
- $dnotation = str_replace('fî' ,
-                          '<nobr class="nudge_right">f</nobr>î', 
-                          $dnotation);
 
  $detail .= "\r\n<span id=\"notation_p".$myrow['key']."\" class=\"notation\">".$dnotation."</span>\r\n";
 }
