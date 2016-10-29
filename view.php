@@ -193,6 +193,9 @@ while($myrow=mysql_fetch_array($result))
 	{
 		// underline single instance of quote field
 		$quote = Normalizer::normalize($quote, Normalizer::FORM_KC);
+                // ensure no leftover initial spaces keep this link from being included
+                $quote = ltrim($quote);
+
 		if ($quote != "")
 		{
 			$reg_from = '/'.preg_quote($quote, '/').'/';
