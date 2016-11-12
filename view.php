@@ -234,12 +234,25 @@ echo "
 <head>
  <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
  <title>".translate('View documents', $st, 'sys')."</title>
- <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css\">
+ <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20161112\">
 
  <script language=JavaScript>
 
   coordinates = {".$js_coordinates."};
   annotations = {".$js_annotations."};
+
+  // Language abbreviations that need to get a special style
+  // Special characters are hard to deal with in vim, so separate them out.
+  langAbbrevs = ['Ar.', 'Fa.', 'Osm.', 'E.Yun.', 'Yun.', 'Aram.', 'Rum.', 'Skt.'];
+  langAbbrevs.push('İng.');
+  langAbbrevs.push('İbr.');
+  langAbbrevs.push('Soğ.');
+  langAbbrevs.push('E.Tü.');
+  langAbbrevs.push('Kz.Tü.');
+  langAbbrevs.push('U.Tü.');
+  langAbbrevs.push('T.Tü.');
+  langAbbrevs.push('Tü.');
+
   imageFiles = [".$js_imageFiles."];
   docCount = 0;
   lastNotation = '';
@@ -287,11 +300,40 @@ echo "
    }
   }
 
+  function replaceLangAbbrev(origString, replString) {
+
+      outString = origString;
+      while (outString.indexOf(replString) >= 0 ) {
+          // Start building the new replacement string
+          newReplString = replString;
+
+          // If there is a period at the end, get rid of it
+          if (replString.slice(-1) == '.') {
+              newReplString = replString.slice(0, -1);
+          }  
+
+         // If there is still a period (in the middle), make it a space
+         newReplString = newReplString.replace('.', ' ');
+
+         // Wrap the replacement string in a span
+         newReplString = '<span class=\"langAbbreviation\">' + newReplString + '</span>'; 
+         outString = outString.replace(replString, newReplString);
+      }
+
+      return outString;
+  }
+
+
   function setAnnotations(key)
   {
     var a = annotations[key].split('^');
+    var annDef = a[1];
 
-    document.getElementById(\"viewAnnotations\").innerHTML = '<b>' + a[0] + '</b> : ' + a[1];
+    // Give the language abbreviations a different style via wrapping in a span
+    for (index = 0; index < langAbbrevs.length; index++) {
+        annDef = replaceLangAbbrev(annDef, langAbbrevs[index]);
+    }
+    document.getElementById(\"viewAnnotations\").innerHTML = '<b>' + a[0] + '</b> : ' + annDef;
 
     var links = a[2].split('\t');
 	for (i =0; i < links.length; i++)
