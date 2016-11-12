@@ -171,7 +171,7 @@ while($myrow=mysql_fetch_array($result))
 		$chapter_options .= "<option value=\"chapter_".$chapter."\">".$chapter;
 	   }
 	   if($verse   != $sav_verse)  
-	   {$dnotation .= "\r\n<div id=\"verse_p".$myrow['key']."\" class=\"verse\">".$verse."</div>\r\n";}
+	   {$dnotation .= "\r\n<nobr><div id=\"verse_p".$myrow['key']."\" class=\"verse\">".$verse."</div>\r\n</nobr>";}
 	   $sav_chapter = $chapter;   
 	   $sav_verse   = $verse;
 	  }
@@ -193,6 +193,9 @@ while($myrow=mysql_fetch_array($result))
 	{
 		// underline single instance of quote field
 		$quote = Normalizer::normalize($quote, Normalizer::FORM_KC);
+                // ensure no leftover initial spaces keep this link from being included
+                $quote = ltrim($quote);
+
 		if ($quote != "")
 		{
 			$reg_from = '/'.preg_quote($quote, '/').'/';
@@ -208,6 +211,17 @@ while($myrow=mysql_fetch_array($result))
 		$ii++;
 	}
  }
+
+ $specialChrs = array("î","ʿ");
+
+ # add a narrow space between an f and an i that has a circumflex accent
+ foreach ($specialChrs as $nextChr) {
+   $dnotation = str_replace('f' . $nextChr, 
+                            '<nobr class="nudge_right">f</nobr>' . $nextChr,
+                            $dnotation);
+ }
+
+
  $detail .= "\r\n<span id=\"notation_p".$myrow['key']."\" class=\"notation\">".$dnotation."</span>\r\n";
 }
 

@@ -146,6 +146,66 @@ function xml2array($contents, $get_attributes=1, $priority = 'attribute') {
 /**
 ******************************************************************************/
 
+
+
+/**
+******************************************************************************/
+
+/** ****************************
+ *******************************
+ * The Translation Editor has a bug that corrupts the export to *.oxes files
+ * if the user happens to put spaces at the beginning of a verse.
+ * This function is intended to clean that up.
+ *
+ * Normally the [p] array element will have a verseStart in one element
+ * and then a verseEnd in the next element and back and forth.
+ * When it's corrupted, the verseEnd gets shoved in with the following 
+ * verseStart along with an extra labelTr element.
+ * 
+ * This doesn't seem to be an issue for spaces preceding the first verse of a chapter
+ */
+
+function cleanVerseEndsInXml(&$bookContents) 
+{
+    foreach($bookContents as $mainElement)
+    {
+        if ( ! $mainElement or ! is_array($mainElement)) { continue; }
+        
+        foreach($mainElement as $psType=>$pContents) 
+        {     
+            if ($psType == 'p' && is_array($pContents) && $pContents) {
+                cleanXmlForOneP($pContents);
+            }
+        }
+    }
+}
+
+function cleanXmlForOneP(&$pContents)
+{
+    
+    $prevElement = $pContents[0];    
+    
+    for ($i = 1; $i < count($pContents); $i++) 
+    {
+        $nextElement = $pContents[$i];
+        
+        if (!isset($prevElement['verseEnd'])) {
+            if (isset($nextElement['verseEnd']) &&
+                                          isset($nextElement['verseStart'])) {
+                $prevElement['verseEnd'] = $nextElement['verseEnd'];
+                unset($nextElement['verseEnd']);
+            }
+        }
+        
+        $prevElement = $nextElement;
+    }    
+}
+
+
+// ****************** 
+ 
+
+
 function processAnnotation(&$book, $annotation)
 {
 	$category = $annotation['notationCategories']['category']['value'];
@@ -161,7 +221,9 @@ function processAnnotation(&$book, $annotation)
 	list($b, $c, $v) = explode(".", $akey);
 	$akey = $b.".".str_pad($c,3,"0",STR_PAD_LEFT).".".str_pad($v,3,"0",STR_PAD_LEFT);  
 	$book[$akey]['notationCategory'][]       = str_replace('"', "''", $category);
-	$book[$akey]['notationQuote'][]          = str_replace('"', "''", $annotation['notationQuote']['para']['span']['value']);
+        // initial spaces keep the quote from being recognized
+	$book[$akey]['notationQuote'][]          = str_replace('"', "''", 
+                                                   ltrim($annotation['notationQuote']['para']['span']['value']));
 	$book[$akey]['notationDiscussion'][]     = str_replace('"', "''", $annotation['notationDiscussion']['para']['span']['value']);
 	if (isset($annotation['notationRecommendation']['para']['a'][0]))
 	{
@@ -248,6 +310,9 @@ function processUpload($bookId, $bibleTitleId)
 
    // extract book contents
    $psection = $contents['oxes']['oxesText']['canon']['book']['section'];
+
+   cleanVerseEndsInXml($psection);
+
    if(!isset($psection[0])) {$psection = array($psection);}
 
    foreach($psection as $sections)
