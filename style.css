@@ -24,6 +24,12 @@
 	src: url(fonts/CharisSIL-BI.woff);
 }
 
+/*  Make language abbreviations nicer */
+span.langAbbreviation {
+    font-style: italic;
+    font-weight: bold;
+}
+
 /* Adding box decorations like this instead of on each element makes it much easier to update */
 .gray-box-shadow, #viewDoc, #viewAnnotationsDiv, #viewNotations {
 	-webkit-box-shadow: 0 0 18px 5px #ccc;
