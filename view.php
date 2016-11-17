@@ -251,8 +251,9 @@ echo "
   langAbbrevs.push('İta.');
   langAbbrevs.push('Soğ.');
   langAbbrevs.push('E.Tü.');
-  langAbbrevs.push('Kz.Tü.');
   langAbbrevs.push('U.Tü.');
+  langAbbrevs.push('Kz.Tü.');
+  langAbbrevs.push('K.Tü.');
   langAbbrevs.push('T.Tü.');
   langAbbrevs.push('Y.Tü.');
   langAbbrevs.push('Tü.');
