@@ -243,14 +243,18 @@ echo "
 
   // Language abbreviations that need to get a special style
   // Special characters are hard to deal with in vim, so separate them out.
-  langAbbrevs = ['Ar.', 'Fa.', 'Osm.', 'E.Yun.', 'Yun.', 'Aram.', 'Rum.', 'Skt.'];
-  langAbbrevs.push('İng.');
+  langAbbrevs = ['Alm.', 'Ar.', 'Bulg.', 'Fa.', 'Osm.', 'E.Yun.', 'Yun.', 'Aram.', 
+                 'Fra.', 'Rum.', 'Skt.'];
   langAbbrevs.push('İbr.');
+  langAbbrevs.push('İng.');
+  langAbbrevs.push('İta.');
+  langAbbrevs.push('İta.');
   langAbbrevs.push('Soğ.');
   langAbbrevs.push('E.Tü.');
   langAbbrevs.push('Kz.Tü.');
   langAbbrevs.push('U.Tü.');
   langAbbrevs.push('T.Tü.');
+  langAbbrevs.push('Y.Tü.');
   langAbbrevs.push('Tü.');
 
   imageFiles = [".$js_imageFiles."];
