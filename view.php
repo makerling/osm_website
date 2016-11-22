@@ -234,7 +234,7 @@ echo "
 <head>
  <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
  <title>".translate('View documents', $st, 'sys')."</title>
- <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20161112\">
+ <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20161121\">
 
  <script language=JavaScript>
 
@@ -243,8 +243,9 @@ echo "
 
   // Language abbreviations that need to get a special style
   // Special characters are hard to deal with in vim, so separate them out.
-  langAbbrevs = ['Alm.', 'Ar.', 'Bulg.', 'Fa.', 'Osm.', 'E.Yun.', 'Yun.', 'Aram.', 
-                 'Fra.', 'Rum.', 'Skt.'];
+  langAbbrevs = ['Akad.', 'Alm.', 'Ar.', 'Aram.', 'Bulg.', 'Fa.', 'Fra.', 'Lat.',
+                 'Mac.', 'Macar.', 'Osm.',  
+                 'Rum.', 'Skt.', 'E.Yun.', 'Yun.'];
   langAbbrevs.push('İbr.');
   langAbbrevs.push('İng.');
   langAbbrevs.push('İta.');
@@ -257,7 +258,9 @@ echo "
   langAbbrevs.push('T.Tü.');
   langAbbrevs.push('Y.Tü.');
   langAbbrevs.push('Tü.');
-
+  langAbbrevs.push('Moğ.');
+  langAbbrevs.push('Soğd.');
+ 
   imageFiles = [".$js_imageFiles."];
   docCount = 0;
   lastNotation = '';
@@ -305,8 +308,19 @@ echo "
    }
   }
 
-  function replaceLangAbbrev(origString, replString) {
+  function replaceLangAbbrLite(origString, replString) {
+      spanClass = 'langAbbrLite';
+      outString = origString;
 
+      newReplString = '<span class=\"' + spanClass + '\">' + replString + '</span>';
+      outString = outString.replace(replString, newReplString);
+
+      return outString;
+  }
+
+
+  function replaceLangAbbrev(origString, replString) {
+      spanClass = 'langAbbreviation';
       outString = origString;
       while (outString.indexOf(replString) >= 0 ) {
           // Start building the new replacement string
@@ -317,12 +331,12 @@ echo "
               newReplString = replString.slice(0, -1);
           }  
 
-         // If there is still a period (in the middle), make it a space
-         newReplString = newReplString.replace('.', ' ');
+          // If there is still a period (in the middle), make it a space
+          newReplString = newReplString.replace('.', ' ');
 
-         // Wrap the replacement string in a span
-         newReplString = '<span class=\"langAbbreviation\">' + newReplString + '</span>'; 
-         outString = outString.replace(replString, newReplString);
+          // Wrap the replacement string in a span
+          newReplString = '<span class=\"' + spanClass + '\">' + newReplString + '</span>'; 
+          outString = outString.replace(replString, newReplString);
       }
 
       return outString;
@@ -335,6 +349,8 @@ echo "
     var annDef = a[1];
 
     // Give the language abbreviations a different style via wrapping in a span
+    annDef = replaceLangAbbrLite(annDef, 'mec.');
+
     for (index = 0; index < langAbbrevs.length; index++) {
         annDef = replaceLangAbbrev(annDef, langAbbrevs[index]);
     }
