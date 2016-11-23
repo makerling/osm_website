@@ -308,6 +308,7 @@ echo "
    }
   }
 
+  // Wrap a string (e.g. mec.) in a span with a class to make italicized
   function replaceLangAbbrLite(origString, replString) {
       spanClass = 'langAbbrLite';
       outString = origString;
@@ -318,7 +319,8 @@ echo "
       return outString;
   }
 
-
+  // Remove periods from a substring (e.g. Ar.) and wrap in a span with a class
+  // to make it bold and italicized
   function replaceLangAbbrev(origString, replString) {
       spanClass = 'langAbbreviation';
       outString = origString;
@@ -326,13 +328,9 @@ echo "
           // Start building the new replacement string
           newReplString = replString;
 
-          // If there is a period at the end, get rid of it
-          if (replString.slice(-1) == '.') {
-              newReplString = replString.slice(0, -1);
-          }  
-
-          // If there is still a period (in the middle), make it a space
-          newReplString = newReplString.replace('.', ' ');
+          // Remove the one or two periods
+          newReplString = newReplString.replace('.', '');
+          newReplString = newReplString.replace('.', '');
 
           // Wrap the replacement string in a span
           newReplString = '<span class=\"' + spanClass + '\">' + newReplString + '</span>'; 
