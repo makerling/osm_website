@@ -7,24 +7,6 @@
 /******************************************************************************/
 
 
-$jsSetStyles = "
-
-  document.getElementsByTagName(\"html\")[0].style.height = '100%';
-  document.getElementsByTagName(\"body\")[0].style.height = '97%';
-  document.getElementById(\"form1\").style.height = '100%';
-  document.getElementById(\"wrapper\").style.height = '100%';
-
-  document.getElementById(\"content\").parentElement.parentElement.style.height = '100%';
-
-  
-  document.getElementById(\"content\").id = 'viewColumnsContent';
-  document.getElementById(\"viewColumnsContent\").style.height = '100%';
-
-  document.getElementById(\"wrapper\").style.width = '100%';
-  document.getElementById(\"viewColumnsContent\").style.width = '98%';
-
-";
-
 
 $jsSetAnnotations = "
 
