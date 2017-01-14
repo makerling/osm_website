@@ -169,6 +169,10 @@ body {
     border: 4px solid #CED5E5;
 }
 
+#viewAnnotationsDiv.viewColumns {
+    width: 90%;
+}
+
 #viewAnnotations {
     overflow-x: hidden; 
     overflow-y: auto;
@@ -215,6 +219,17 @@ body {
     margin-left:20px;
 }
 
+#viewNotations.viewColumns {
+    top: 70px;
+    width: 97%;
+    height: 82%;
+    padding-left: 1px;
+    padding-right: 4px;    
+    margin-left: 2px;
+    border: 1px solid #CED5E5;
+
+}
+
 .notation {
 	line-height: 1.25em;
 }
@@ -250,6 +265,9 @@ body {
     padding:0;
 }
 
+#formViewCols #chapter {
+   margin-left: 20px;
+}
 
 a {
     text-decoration:none;
@@ -301,4 +319,9 @@ a {
 
 nobr.nudge_right {
     letter-spacing:0.05cm
+}
+
+
+body.viewColumns {
+    margin: 2px;
 }
