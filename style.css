@@ -227,7 +227,7 @@ body {
     padding-right: 4px;    
     margin-left: 2px;
     border: 1px solid #CED5E5;
-
+    text-align: left;
 }
 
 .notation {
@@ -263,10 +263,6 @@ body {
     display:inline;
     margin:0;
     padding:0;
-}
-
-#formViewCols #chapter {
-   margin-left: 20px;
 }
 
 a {
@@ -325,3 +321,22 @@ nobr.nudge_right {
 body.viewColumns {
     margin: 2px;
 }
+
+td.column_button input {
+    width: 70px;
+    margin-left: 60px;
+    white-space: normal;
+}
+
+#formViewCols #bibleTitle {
+    width: 100%;
+}
+
+#formViewCols #bookName {
+    width: 75%;
+}
+
+#formViewCols #chapter {
+   margin-left: 20px;
+}
+
