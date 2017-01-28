@@ -234,7 +234,7 @@ echo "
 <head>
  <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
  <title>".translate('View documents', $st, 'sys')."</title>
- <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20161121\">
+ <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20170117\">
 
  <script language=JavaScript>
 
@@ -599,6 +599,9 @@ echo "
        </td>
        <td>
         ".translate('Chapter', $st, 'sys')."
+       </td>
+       <td class='column_button'><input type='button' onclick='window.open(\"viewColumnsPublic.php?iso=" . $_GET['iso'] . "&st=" . $_GET['st'] . "\")'
+            value='" . translate('Parallel Columns', $st, 'sys') . "'/>
        </td>
       </tr>
       <tr valign=\"top\">
