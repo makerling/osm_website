@@ -110,3 +110,18 @@ function scroll2Chapter(chapterSelect) {
 }
 
 ";
+
+
+$showColumn = "
+function showColumn(colNum, iso, st, addLabel) {
+  element = document.getElementById('column' + colNum);
+  element.innerHTML = \"<iframe src='viewColumns.php?iso=\" + iso + \"&st=\" + st + \"' width=100%; height=100%;></iframe>\";
+
+  if (colNum == 3) {
+    col4 = document.getElementById('column4');
+    col4.innerHTML = \"<input type='button' id='show_column4' value='\" + addLabel + \"' " . 
+                           "onclick='showColumn(4, &#39;\" + iso + \"&#39;)'>\";
+  }
+
+}
+";
