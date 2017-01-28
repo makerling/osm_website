@@ -24,6 +24,16 @@
 	src: url(fonts/CharisSIL-BI.woff);
 }
 
+/*  Make language abbreviations nicer */
+span.langAbbreviation {
+    font-style: italic;
+    font-weight: bold;
+}
+
+span.langAbbrLite {
+    font-style: italic;
+}
+
 /* Adding box decorations like this instead of on each element makes it much easier to update */
 .gray-box-shadow, #viewDoc, #viewAnnotationsDiv, #viewNotations {
 	-webkit-box-shadow: 0 0 18px 5px #ccc;
@@ -159,6 +169,10 @@ body {
     border: 4px solid #CED5E5;
 }
 
+#viewAnnotationsDiv.viewColumns {
+    width: 90%;
+}
+
 #viewAnnotations {
     overflow-x: hidden; 
     overflow-y: auto;
@@ -205,6 +219,17 @@ body {
     margin-left:20px;
 }
 
+#viewNotations.viewColumns {
+    top: 70px;
+    width: 97%;
+    height: 82%;
+    padding-left: 1px;
+    padding-right: 4px;    
+    margin-left: 2px;
+    border: 1px solid #CED5E5;
+    text-align: left;
+}
+
 .notation {
 	line-height: 1.25em;
 }
@@ -239,7 +264,6 @@ body {
     margin:0;
     padding:0;
 }
-
 
 a {
     text-decoration:none;
@@ -292,3 +316,27 @@ a {
 nobr.nudge_right {
     letter-spacing:0.05cm
 }
+
+
+body.viewColumns {
+    margin: 2px;
+}
+
+td.column_button input {
+    width: 70px;
+    margin-left: 60px;
+    white-space: normal;
+}
+
+#formViewCols #bibleTitle {
+    width: 100%;
+}
+
+#formViewCols #bookName {
+    width: 75%;
+}
+
+#formViewCols #chapter {
+   margin-left: 20px;
+}
+

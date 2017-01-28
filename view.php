@@ -234,12 +234,33 @@ echo "
 <head>
  <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
  <title>".translate('View documents', $st, 'sys')."</title>
- <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css\">
+ <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20170117\">
 
  <script language=JavaScript>
 
   coordinates = {".$js_coordinates."};
   annotations = {".$js_annotations."};
+
+  // Language abbreviations that need to get a special style
+  // Special characters are hard to deal with in vim, so separate them out.
+  langAbbrevs = ['Akad.', 'Alm.', 'Ar.', 'Aram.', 'Bulg.', 'Fa.', 'Fra.', 'Lat.',
+                 'Mac.', 'Macar.', 'Osm.',  
+                 'Rum.', 'Skt.', 'E.Yun.', 'Yun.'];
+  langAbbrevs.push('İbr.');
+  langAbbrevs.push('İng.');
+  langAbbrevs.push('İta.');
+  langAbbrevs.push('İta.');
+  langAbbrevs.push('Soğ.');
+  langAbbrevs.push('E.Tü.');
+  langAbbrevs.push('U.Tü.');
+  langAbbrevs.push('Kz.Tü.');
+  langAbbrevs.push('K.Tü.');
+  langAbbrevs.push('T.Tü.');
+  langAbbrevs.push('Y.Tü.');
+  langAbbrevs.push('Tü.');
+  langAbbrevs.push('Moğ.');
+  langAbbrevs.push('Soğd.');
+ 
   imageFiles = [".$js_imageFiles."];
   docCount = 0;
   lastNotation = '';
@@ -287,11 +308,51 @@ echo "
    }
   }
 
+  // Wrap a string (e.g. mec.) in a span with a class to make italicized
+  function replaceLangAbbrLite(origString, replString) {
+      spanClass = 'langAbbrLite';
+      outString = origString;
+
+      newReplString = '<span class=\"' + spanClass + '\">' + replString + '</span>';
+      outString = outString.replace(replString, newReplString);
+
+      return outString;
+  }
+
+  // Remove periods from a substring (e.g. Ar.) and wrap in a span with a class
+  // to make it bold and italicized
+  function replaceLangAbbrev(origString, replString) {
+      spanClass = 'langAbbreviation';
+      outString = origString;
+      while (outString.indexOf(replString) >= 0 ) {
+          // Start building the new replacement string
+          newReplString = replString;
+
+          // Remove the one or two periods
+          newReplString = newReplString.replace('.', '');
+          newReplString = newReplString.replace('.', '');
+
+          // Wrap the replacement string in a span
+          newReplString = '<span class=\"' + spanClass + '\">' + newReplString + '</span>'; 
+          outString = outString.replace(replString, newReplString);
+      }
+
+      return outString;
+  }
+
+
   function setAnnotations(key)
   {
     var a = annotations[key].split('^');
+    var annDef = a[1];
 
-    document.getElementById(\"viewAnnotations\").innerHTML = '<b>' + a[0] + '</b> : ' + a[1];
+    // Give the language abbreviations a different style via wrapping in a span
+    annDef = replaceLangAbbrLite(annDef, 'mec.');
+
+    for (index = 0; index < langAbbrevs.length; index++) {
+        annDef = replaceLangAbbrev(annDef, langAbbrevs[index]);
+    }
+    document.getElementById(\"viewAnnotations\").innerHTML = '<b>' + a[0] + '</b> : ' + annDef;
 
     var links = a[2].split('\t');
 	for (i =0; i < links.length; i++)
@@ -538,6 +599,9 @@ echo "
        </td>
        <td>
         ".translate('Chapter', $st, 'sys')."
+       </td>
+       <td class='column_button'><input type='button' onclick='window.open(\"viewColumnsPublic.php?iso=" . $_GET['iso'] . "&st=" . $_GET['st'] . "\")'
+            value='" . translate('Parallel Columns', $st, 'sys') . "'/>
        </td>
       </tr>
       <tr valign=\"top\">

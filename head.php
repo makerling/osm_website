@@ -16,6 +16,7 @@ $menu_tabs   = array
   'books.php'=>'Bibles / Books',
   'sync.php'=>'Synchronize / Edit',
   'viewParent.php'=>'View',
+  'viewColumnsParent.php' => 'Multi-Columns',
   'translations.php'=>'Translations',
   'reprocess.php'=>'Reprocess',
   'user.php'=>'Users'
@@ -30,7 +31,7 @@ echo <<<END
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>$system_title</title>
 <LINK REL="SHORTCUT ICON" HREF="images/favicon.ico">
-<link type="text/css" rel="stylesheet" href="menu.css">
+<link type="text/css" rel="stylesheet" href="menu.css?v=20170103">
 
 <SCRIPT LANGUAGE=JavaScript>
 

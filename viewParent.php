@@ -10,10 +10,11 @@
 
 require "config.php";
 require "head.php";
+$st = $_GET['st'];
 
 echo "
 
-<iframe src='view.php?iso=".$sec_code."' width=900px; height=740px;></iframe>
+<iframe src='view.php?iso=".$sec_code."&st=" . $st . "' width=900px; height=740px;></iframe>
 
 
 <h3>Embed code:</h3>
