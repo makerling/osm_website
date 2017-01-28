@@ -38,3 +38,14 @@ table.viewColumns tr {
     width: 100%;
 }
 
+#column3, #column4 {
+    vertical-align: top;
+}
+
+#show_column3, #show_column4 {
+    vertical-align: top;
+    margin-left: 3px;
+    height: 40px;
+    width: 70px;
+    white-space: normal;
+}
