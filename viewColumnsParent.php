@@ -21,7 +21,8 @@ echo "
    <table class=\"viewColumns\">
     <tr>
      <td>
-      <iframe src='viewColumns.php?iso=" . $sec_code . "' width=100%; height=100%;></iframe>
+      <iframe src='viewColumns.php?iso=" . $sec_code . "&st=" . $st ."' 
+              width=100%; height=100%;></iframe>
      </td>
      <td>
       <iframe src='viewColumns.php?iso=" . $sec_code . "' width=100%; height=100%;></iframe>
