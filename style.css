@@ -145,6 +145,10 @@ body {
     line-height: .9em;
 }
 
+#viewBookSelect td {
+    font-weight: bold;
+}
+
 #viewDoc {
     position:absolute;
     top:70px;
