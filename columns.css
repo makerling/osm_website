@@ -38,6 +38,10 @@ table.viewColumns tr {
     width: 100%;
 }
 
+table.viewColumns tr.collapseColumn {
+    height: 10px;
+}
+
 #column3, #column4 {
     vertical-align: top;
 }
