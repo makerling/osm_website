@@ -234,7 +234,7 @@ echo "
 <head>
  <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
  <title>".translate('View documents', $st, 'sys')."</title>
- <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20170118\">
+ <link type=\"text/css\" rel=\"stylesheet\" href=\"style.css?d=20170210\">
 
  <script language=JavaScript>
 
