@@ -21,7 +21,7 @@ function getLangAbbrevs() {
     'Lat.',
     'Mac.', 
     'Macar.', 
-    'Moğ.',
+    'Moğ.',  // Mog  Apokalipsis 9:9, Ali 1665
     'Osm.',
     'Rum.', 
     'Skt.', 
