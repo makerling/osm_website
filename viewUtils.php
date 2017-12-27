@@ -40,12 +40,13 @@ function getViewData($bibleTitleSqlResults, $bibleKey, $bookKey) {
         $bibleTitle = $_COOKIE[$bibleKey];
         $bookName = $_COOKIE[$bookKey];
     }
+
+    list($bibleTitle, $bibleTitleOptions) = getBibleTitleSelect(
+        $bibleTitleSqlResults, $bibleTitle);
     $bibleId = getBibleId($bibleTitle);
 
-    $bibleTitleOptions = getBibleTitleSelect($bibleTitleSqlResults, $bibleTitle);
-
+    list($bookName, $bookNameOptions) = getBookNameSelect($bibleTitle, $bookName);
     $bookId = getBookId($bibleId, $bookName);
-    $bookNameOptions = getBookNameSelect($bibleTitle, $bookName);
 
     $notnData = getNotationData($bibleId, $bookId);
 
@@ -157,7 +158,9 @@ function getBibleId($bibleTitle) {
   * @param resource, mysql_query results
   * @param string
   *
-  * @return string for html for all the select options for Bible Titles 
+  * @return array with ...
+  *   - a string with the bibleTitle (either the original one or the default one)
+  *   - a string for html for all the select options for Bible Titles 
   *
   **/
 function getBibleTitleSelect($bibleTitleSqlResults, $bibleTitle) {
@@ -170,13 +173,19 @@ function getBibleTitleSelect($bibleTitleSqlResults, $bibleTitle) {
             $selected = 'selected';
         }
 
+        if ( ! $bibleTitle and $bibleRow['displayDefault']==1) {
+            $selected = 'selected';
+            $bibleTitle = $bibleRow['title'];
+            $_POST['bibleTitle'] = $bibleRow['title'];
+        }
+
         $bibleTitleOptions .= '<option value="' .
                               $bibleRow['title'] . '" ' . $selected . '>' .
                               $bibleRow['title'] . '</option>';
     }
     mysql_data_seek($bibleTitleSqlResults, 0);
 
-    return $bibleTitleOptions;
+    return array($bibleTitle, $bibleTitleOptions);
 }
 
 /**
@@ -247,7 +256,9 @@ function getBookId($bibleId, $bookName) {
   * @param string $bibleTitle
   * @param string $bookName
   *
-  * @return string with the html select options for the books of that bible
+  * @return array with ...
+  *  - a string of the bookName (either the original one or the default)
+  *  - a string with the html select options for the books of that bible
   *
   **/
 function getBookNameSelect($bibleTitle, $bookName) {
@@ -261,13 +272,20 @@ function getBookNameSelect($bibleTitle, $bookName) {
             if ($bookRow['name'] == $bookName) {
                 $selected = 'selected';
             }
+
+            if ( ! $bookName and $bookRow['displayDefault']==1) {
+                $selected = 'selected';
+                $bookName = $bookRow['name'];
+                $_POST['bookName'] = $bookRow['name'];
+            }
+
             $bookNameOptions .= '<option value="' .
                                 $bookRow['name'] . '" ' . $selected . '>' . 
                                 $bookRow['name'] . '</option>';
         }
     }
 
-    return $bookNameOptions;
+    return array($bookName, $bookNameOptions);
 }
 
 /**
