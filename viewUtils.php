@@ -8,6 +8,7 @@
 /*                 Nov. 2016                                                  */
 /******************************************************************************/
 
+
 /**
   *
   * @param resource (msql_query results)
@@ -15,6 +16,7 @@
   * @param string $bookKey
   *
   * @return stdClass with the following attributes ...
+  *  ->bibleTitle, a string with the title of the Bible/Testament
   *  ->bibleTitleId, a string with the id of a sql row
   *  ->bibleTitleOptions, a string with html options for a select
   *  ->bookId, a string with the id of a sql row
@@ -32,7 +34,7 @@
   *     ->jsCoordinates
   *
   **/
-function getViewData($bibleTitleSqlResults, $bibleKey, $bookKey) {
+function getViewData($bibleTitleSqlResults, $bibleKey, $bookKey, $languageCode='eng') {
     $bibleTitle = getPostSetCookie($bibleKey, $_POST);
     $bookName = getPostSetCookie($bookKey, $_POST);
 
@@ -55,9 +57,9 @@ function getViewData($bibleTitleSqlResults, $bibleKey, $bookKey) {
         $chapterOptions = $notnData->chapterOptions;
     }
 
-
     $viewData = new stdClass();
     $viewData->notnData = $notnData;
+    $viewData->bibleTitle = $bibleTitle;
     $viewData->bibleTitleId = $bibleId;
     $viewData->bibleTitleOptions = $bibleTitleOptions;
     $viewData->bookId = $bookId;
@@ -187,6 +189,7 @@ function getBibleTitleSelect($bibleTitleSqlResults, $bibleTitle) {
 
     return array($bibleTitle, $bibleTitleOptions);
 }
+
 
 /**
   *
