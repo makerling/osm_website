@@ -327,9 +327,17 @@ body.viewColumns {
     margin: 2px;
 }
 
+
+td.info_button input {
+    width: 60px;
+    margin-left: 5px;
+    white-space: normal;
+    padding-left: 2px;
+}
+
 td.column_button input {
     width: 70px;
-    margin-left: 60px;
+    margin-left: 5px;
     white-space: normal;
 }
 
@@ -345,3 +353,13 @@ td.column_button input {
    margin-left: 20px;
 }
 
+#bibleInfo {
+    text-align:justify;
+    visibility:hidden;
+    background:#ccc;
+    width: 400px;
+    padding: 10px;
+    position: absolute;
+    z-index:9999;
+    border: 4px solid #CED5E5;
+}  
