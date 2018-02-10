@@ -13,7 +13,7 @@
 require 'config.php';
 require "viewUtils.php";
 require "viewScript.php";
-require "bibleInfo.php";
+
 
 $bibleTitleResults = getBibleTitleSqlResults(
                                        mysql_real_escape_string($_GET['iso']));
@@ -22,10 +22,8 @@ $viewData = getViewData($bibleTitleResults,
                         'bibleTitle',
                         'bookName');
 
-$bibleTitle = $viewData->bibleTitle;
 $bibleTitleId = $viewData->bibleTitleId;
 $bibleTitleOptions = $viewData->bibleTitleOptions;
-
 $bookId = $viewData->bookId;
 $bookNameOptions = $viewData->bookNameOptions;
 $chapterOptions = $viewData->chapterOptions;
@@ -84,7 +82,7 @@ $jsCoordinates = "
 <head>
  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
  <title><?php echo translate('View documents', $st, 'sys'); ?></title>
- <link type="text/css" rel="stylesheet" href="style.css?d=20180102">
+ <link type="text/css" rel="stylesheet" href="style.css?d=20170210">
 
  <script language=JavaScript>
   <?php echo $jsCoordinates .
@@ -373,13 +371,7 @@ $jsCoordinates = "
        <td>
          <?php echo translate('Chapter', $st, 'sys'); ?>
        </td>
-       <td class='info_button' rowspan='2'>
-           <input type='button' 
-              onclick="document.getElementById('bibleInfo').style.visibility='visible';"
-              value='<?php echo translate('Info', $st, 'sys'); ?>' />
-       </td>
-       <td class='column_button' rowspan='2'>
-           <input type='button' onclick='window.open("viewColumnsPublic.php?iso=<?php echo  $_GET['iso'] . "&st=" . $_GET['st']; ?>")'
+       <td class='column_button' rowspan='2'><input type='button' onclick='window.open("viewColumnsPublic.php?iso=<?php echo  $_GET['iso'] . "&st=" . $_GET['st']; ?>")'
             value='<?php echo translate('Parallel Columns', $st, 'sys'); ?>'/>
        </td>
       </tr>
@@ -404,11 +396,6 @@ $jsCoordinates = "
        </td>
       </tr>
      </table>
-     <div id="bibleInfo" onclick="this.style.visibility='hidden';">
-       <?php echo getBibleInfo($bibleTitle, $_GET['st']); ?>
-       <img style="position:absolute; top:0px; right:0px;" src="images/close.jpg" 
-          onclick="document.getElementById('bibleInfo').style.visibility='hidden';" title="Close">
-     </div>
     </div>
 
     <div id="viewAnnotationsDiv">
