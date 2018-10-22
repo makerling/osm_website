@@ -82,7 +82,7 @@ $jsCoordinates = "
 <head>
  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
  <title><?php echo translate('View documents', $st, 'sys'); ?></title>
- <link type="text/css" rel="stylesheet" href="style.css?d=201705211">
+ <link type="text/css" rel="stylesheet" href="style.css?d=20170522">
 
  <script language=JavaScript>
   <?php echo $jsCoordinates .
@@ -374,12 +374,12 @@ $jsCoordinates = "
        <td class='column_button' rowspan='2'>
          <table><tr>
            <td>
-             <button type='button' onclick='window.open(
+             <button type='button' style="width:66px" onclick='window.open(
     "viewPDF.php?bibleTitleId=<?php echo($bibleTitleId); ?>&bookId=<?php echo($bookId); ?>&iso=<?php echo  $_GET['iso'] . "&st=" . $_GET['st']; ?>")'>
                <?php echo translate('Save as PDF', $st, 'sys'); ?></button>
            </td>
            <td>
-             <input type='button' onclick='window.open("viewColumnsPublic.php?iso=<?php echo  $_GET['iso'] . "&st=" . $_GET['st']; ?>")'
+             <input type='button' style="width:66px" onclick='window.open("viewColumnsPublic.php?iso=<?php echo  $_GET['iso'] . "&st=" . $_GET['st']; ?>")'
              value='<?php echo translate('Parallel Columns', $st, 'sys'); ?>'/>
            </td>
          </tr></table>
@@ -393,7 +393,7 @@ $jsCoordinates = "
         </select>
        </td>
        <td>
-        <select name="bookName" id="bookName" onchange="submit();">
+        <select name="bookName" id="bookName" style="width:295px" onchange="submit();">
          <option value=""> -- <?php echo translate('Select a current name', $st, 'sys')." -- 
          " . $bookNameOptions; ?>
         </select>
