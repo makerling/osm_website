@@ -393,7 +393,7 @@ $jsCoordinates = "
         </select>
        </td>
        <td>
-        <select name="bookName" id="bookName" onchange="submit();">
+        <select name="bookName" style="width:280px" id="bookName" onchange="submit();">
          <option value=""> -- <?php echo translate('Select a current name', $st, 'sys')." -- 
          " . $bookNameOptions; ?>
         </select>
