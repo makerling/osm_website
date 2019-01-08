@@ -506,6 +506,7 @@ echo "
     <div id=\"doc\">
 		<h3 class=instructionsHeading>BASIC INSTRUCTIONS FOR SYNC TAGGERS:</h3>
 		<ul class=instructions>
+                        <li style=\"color: #F00; font-weight: bold\">Log out of Last Pass before you start tagging. It slows down the SyncChild.</li>
 			<li>Select your assigned Bible and book from the drop-down lists above.</li>
 			<li>Select the first image from the column of thumbnails on the left.</li>
 			<li>Click once on a verse in the list of chapter/verse numbers on the right, and click again on the equivalent verse number in the jpeg image. A green box (tag) will appear on the jpeg. Continue to the next verse.</li>
